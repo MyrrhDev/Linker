@@ -5,10 +5,10 @@
  venv\Scripts\activate.bat
  ```
 
-2.  Then **install scrapy** using,
+2.  Then **install requirements** 
 
  ```
- pip install scrapy
+ pip install -r requeriments.txt
  ```
 
 3. **Running the scrawler**
