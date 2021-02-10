@@ -8,7 +8,7 @@
 2.  Then **install requirements** 
 
  ```
- pip install -r requeriments.txt
+ pip install -r requirements.txt
  ```
 
 3. **Running the scrawler**
