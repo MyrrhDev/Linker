@@ -1,8 +1,13 @@
-# Explorer Template
+First Clone the repo and setup a **virtual environment**.
 
-This is a template to help you get started with your projects. Find out more information inside of the Fello Handbook.
+ python -m venv venv
+ venv\Scripts\activate.bat
 
-This template has a `main` and `staging` branch already setup. 
+ Then **install scrapy** using,
 
-- Code will only be merged into `main` once your Pod Leader has reviewed your code. 
-- During the week, you'll merge code into `staging`. 
+ pip install scrapy
+
+ **Running the scrawler**
+ scrapy runspider script.py -o report-file.csv
+
+ During the execution of the crawler the report-file.csv will be populated.
