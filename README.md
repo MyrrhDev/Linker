@@ -1,11 +1,11 @@
-1. First Clone the repo and setup a **virtual environment**.
+1. **Setting up a virtual environment**.
 
  ```
  python -m venv venv
  venv\Scripts\activate.bat
  ```
 
-2.  Then **install requirements** 
+2.  **installing requirements** 
 
  ```
  pip install -r requirements.txt
