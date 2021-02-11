@@ -3,6 +3,10 @@ from scrapy.linkextractors import LinkExtractor
 from scrapy.selector import Selector
 from scrapy.item import Item, Field
 
+import send_email
+
+message = ""
+
 class MyItems(Item):
     referer =Field() # where the link is extracted
     response= Field() # url that was requested
@@ -34,11 +38,19 @@ class MySpider(CrawlSpider):
     ]
 
     def parse_my_url(self, response):
+      global message
       report_if = [ 404,400,500] #list of responses that we want to include on the report, 200 to show something.
       if response.status in report_if: # if the response matches then creates a MyItem
           item = MyItems()
           item['referer'] = response.request.headers.get('Referer', None)
           item['status'] = response.status
           item['response']= response.url
+          message+=item['response']+" "+str(item['status'])+'\n'
+          print("msg so far: ", message)
           yield item
-      yield None # if the response did not match return empty
+      yield None # if the response did not match return empty      
+      #send_email.send_it(message) #doesn't work cause gets called at every url
+      
+
+
+
