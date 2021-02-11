@@ -8,8 +8,7 @@ def send_it(messagetxt):
         from_email='mayra.pastor@estudiantat.upc.edu',
         to_emails='pastorvaldivia.m@gmail.com',
         subject='Sending with Twilio SendGrid is Fun',
-        html_content=messagetxt)
-        #html_content='<strong>and easy to do anywhere, even with Python</strong>')
+        html_content=messagetxt)        
 
     #Using os won't work for Chrome extension...
     sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))

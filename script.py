@@ -36,6 +36,10 @@ class MySpider(CrawlSpider):
             follow=False
         )
     ]
+        
+    def close(self):
+      send_email.send_it(message)
+        
 
     def parse_my_url(self, response):
       global message
@@ -48,9 +52,4 @@ class MySpider(CrawlSpider):
           message+=item['response']+" "+str(item['status'])+'\n'
           print("msg so far: ", message)
           yield item
-      yield None # if the response did not match return empty      
-      #send_email.send_it(message) #doesn't work cause gets called at every url
-      
-
-
-
+      yield None # if the response did not match return empty
