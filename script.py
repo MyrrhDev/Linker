@@ -10,8 +10,8 @@ class MyItems(Item):
 
 class MySpider(CrawlSpider):
     name = "test-crawler"
-    target_domains = ["dev.to"] # list of domains that will be allowed to be crawled
-    start_urls = ["https://dev.to/"] # list of starting urls for the crawler
+    target_domains = ["sachsom95.github.io"] # list of domains that will be allowed to be crawled
+    start_urls = ["https://sachsom95.github.io/swift-megaminds-portfolio/"] # list of starting urls for the crawler
     handle_httpstatus_list = [404,410,301,500] # only 200 by default. you can add more status to list
 
     # Throttle crawl speed to prevent hitting site too hard
