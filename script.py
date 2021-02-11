@@ -4,9 +4,9 @@ from scrapy.selector import Selector
 from scrapy.item import Item, Field
 
 class MyItems(Item):
-    referer =Field() # where the link is extracted
+    #referer =Field() # where the link is extracted
     response= Field() # url that was requested
-    status = Field() # status code received
+    #status = Field() # status code received
 
 class MySpider(CrawlSpider):
     name = "test-crawler"
@@ -37,8 +37,8 @@ class MySpider(CrawlSpider):
       report_if = [ 404,400,500] #list of responses that we want to include on the report, 200 to show something.
       if response.status in report_if: # if the response matches then creates a MyItem
           item = MyItems()
-          item['referer'] = response.request.headers.get('Referer', None)
-          item['status'] = response.status
+          #item['referer'] = response.request.headers.get('Referer', None)
+          #item['status'] = response.status
           item['response']= response.url
           yield item
       yield None # if the response did not match return empty
