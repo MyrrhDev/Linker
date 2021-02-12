@@ -3,6 +3,10 @@ from scrapy.linkextractors import LinkExtractor
 from scrapy.selector import Selector
 from scrapy.item import Item, Field
 
+import send_email
+
+message = ""
+
 class MyItems(Item):
     referer =Field() # where the link is extracted
     response= Field() # url that was requested
@@ -10,8 +14,8 @@ class MyItems(Item):
 
 class MySpider(CrawlSpider):
     name = "test-crawler"
-    target_domains = ["dev.to"] # list of domains that will be allowed to be crawled
-    start_urls = ["https://dev.to/"] # list of starting urls for the crawler
+    target_domains = ["sachsom95.github.io"] # list of domains that will be allowed to be crawled
+    start_urls = ["https://sachsom95.github.io/swift-megaminds-portfolio/"] # list of starting urls for the crawler
     handle_httpstatus_list = [404,410,301,500] # only 200 by default. you can add more status to list
 
     # Throttle crawl speed to prevent hitting site too hard
@@ -32,13 +36,20 @@ class MySpider(CrawlSpider):
             follow=False
         )
     ]
+        
+    def close(self):
+      send_email.send_it(message)
+        
 
     def parse_my_url(self, response):
+      global message
       report_if = [ 404,400,500] #list of responses that we want to include on the report, 200 to show something.
       if response.status in report_if: # if the response matches then creates a MyItem
           item = MyItems()
           item['referer'] = response.request.headers.get('Referer', None)
           item['status'] = response.status
           item['response']= response.url
+          message+=item['response']+" "+str(item['status'])+'\n'
+          print("msg so far: ", message)
           yield item
       yield None # if the response did not match return empty
