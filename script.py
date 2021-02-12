@@ -40,7 +40,7 @@ class MySpider(CrawlSpider):
             follow=False
         )
     ]
-
+        
     def close(self):
       send_email.send_it(message)
 
@@ -53,5 +53,7 @@ class MySpider(CrawlSpider):
           #item['status'] = response.status
           item['response']= response.url
           message.append({'response':item['response']}),
+          #message+=item['response']+" "+str(item['status'])+'\n'
+          #print("msg so far: ", message)
           yield item
       yield None # if the response did not match return empty
