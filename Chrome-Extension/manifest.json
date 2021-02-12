@@ -1,8 +1,8 @@
 {
-    "manifest_version": 1,
+    "manifest_version": 2,
   
-    "name": "Placeholder",
-    "description": "Broken Link checker",
+    "name": "Linkman",
+    "description": "Check for broken links on your deployed website and get details by E-mail in real-time!",
     "version": "0.0",
   
     "browser_action": {
