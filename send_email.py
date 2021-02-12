@@ -6,26 +6,19 @@ from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 from python_http_client import exceptions
 
-def send_it():
+def send_it(errorList):
     dotenv.load()
-    with open("report-file.csv") as csv_file:
-        recipients = [
-            {k:v for k, v in row.items()}
-            for row in csv.DictReader(csv_file, skipinitialspace=True)
-        ]
-  
-    print(recipients)
     message = Mail(
-        from_email='17cs058@mgits.ac.in',
+        from_email='amalaabraham3@gmail.com',
         to_emails='amalaabraham3@gmail.com',
         subject='Sending with Twilio SendGrid is Fun',
        )
-
+    print(errorList)
     #Using os won't work for Chrome extension...
     message.dynamic_template_data = {
-        'row': recipients,
+        'row': errorList,
     }
-    message.template_id = 'd-c6ae2c86405045a1a9ca715875976a7e'
+    message.template_id = dotenv.get('TEMPLATE_ID')
     print(dotenv.get('SENDGRID_API_KEY'))
     sg = SendGridAPIClient(dotenv.get('SENDGRID_API_KEY'))
 
@@ -38,5 +31,3 @@ def send_it():
         print(e.body)
         exit()
     print(response.status_code, response.body, response.headers)
-send_it()
-
