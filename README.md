@@ -1,8 +1,20 @@
-# Explorer Template
+1. **Setting up a virtual environment**.
 
-This is a template to help you get started with your projects. Find out more information inside of the Fello Handbook.
+ ```
+ python -m venv venv
+ venv\Scripts\activate.bat
+ ```
 
-This template has a `main` and `staging` branch already setup. 
+2.  **installing requirements** 
 
-- Code will only be merged into `main` once your Pod Leader has reviewed your code. 
-- During the week, you'll merge code into `staging`. 
+ ```
+ pip install -r requirements.txt
+ ```
+
+3. **Running the scrawler**
+
+ ```
+ scrapy runspider script.py -o report-file.csv
+ ```
+
+ 4. During the execution of the crawler the report-file.csv will be populated.
