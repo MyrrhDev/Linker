@@ -1,0 +1,24 @@
+<!--HTML template that is created in the sendgrid dynamic template-->
+
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>CSV File to HTML Table Using AJAX jQuery</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ </head>
+ <body>
+  <div class="container">
+   <div class="table-responsive">
+    <h1 align="center">Check for the broken links!</h1>
+    <br />
+    <br />
+    {{#each row}}
+    <div id="employee_table">
+    {{response}}
+    </div>
+    {{/each}}
+   </div>
+  </div>
+ </body>
+</html>
