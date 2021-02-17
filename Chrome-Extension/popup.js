@@ -1,7 +1,5 @@
-import puppeteer from 'puppeteer';
-
 document.addEventListener('DOMContentLoaded', function () {
-  document.querySelector('button').addEventListener('click', getURL);      
+  document.querySelector('button').addEventListener('click', usage);      
 });
 
 function getURL(){
