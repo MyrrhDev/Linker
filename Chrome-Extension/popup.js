@@ -16,13 +16,15 @@ http.send();
 return http.status;
 }
 
-var link_array = [];
-var status_array = [];
+
 
 function usage(){
+  var link_array = [];
+  var status_array = [];  
   var links = document.links;
   for(var i=0; i<links.length; i++) {
     link_array.push(links[i].href);
     status_array.push(UrlExists(link_array[i]));
   }
+  window.alert(link_array, status_array);
 }
