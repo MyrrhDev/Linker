@@ -58,3 +58,25 @@ function usage(){
 usage();
 console.log(link_array)
 console.log(status_array)
+
+/*
+const api_key = "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"
+
+const sgMail = require('@sendgrid/mail')
+const msg = {
+  to: 'pastorvaldivia.m@gmail.com', // Change to your recipient
+  from: 'mayra.pastor@estudiantat.upc.edu', // Change to your verified sender
+  subject: 'Sendgrid test 123',
+  text: link_array[0] + " and " + link_array[5],
+  html: '<strong>Will add more later</strong>',
+}
+
+sgMail
+  .send(msg)
+  .then(() => {
+    console.log('Email sent')
+  })
+  .catch((error) => {
+    console.error(error)
+  })
+  */
