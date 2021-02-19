@@ -11,6 +11,12 @@
     },
     "permissions": [
       "activeTab",
-      "https://ajax.googleapis.com/"
+      "tabs",
+      "<all_urls>", 
+      "*://*/*",
+      "https://ajax.googleapis.com/*",
+      "https://www.google.com/*",
+      "http://github.com/*"
+      
     ]
   }

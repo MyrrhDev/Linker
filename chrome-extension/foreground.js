@@ -7,9 +7,17 @@
 
 
 function UrlExists(url) {
+
+
+  fetch(url)
+      .then(console.log)
+      .catch(err=>console.err)
+  
 // if(XMLHttpRequest)
 // {
-  var request = new XMLHttpRequest();
+  /*var request = new XMLHttpRequest();
+ 
+ 
   if("withCredentials" in request)
   {
    // Firefox 3.5 and Safari 4
@@ -21,16 +29,15 @@ function UrlExists(url) {
   {
    // IE8
    var request = new XDomainRequest();
-   request.open("get", url);
+   request.open("GET", url);
    request.send();
 
-   
-  }
+   }
 
  // This version of XHR does not support CORS
  // Handle accordingly
 // }
-    return request.status;
+    return request.status;*/
 }
 
 
