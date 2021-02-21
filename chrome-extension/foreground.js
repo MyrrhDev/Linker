@@ -15,7 +15,7 @@ function UrlExists(url) {
   
 // if(XMLHttpRequest)
 // {
-  /*var request = new XMLHttpRequest();
+  var request = new XMLHttpRequest();
  
  
   if("withCredentials" in request)
@@ -37,7 +37,7 @@ function UrlExists(url) {
  // This version of XHR does not support CORS
  // Handle accordingly
 // }
-    return request.status;*/
+    return request.status;
 }
 
 
@@ -80,3 +80,7 @@ sgMail
     console.error(error)
   })
   */
+ console.log("YOOOOOOOOOOOOOOOOOO")
+ for(var i = 0; i <= status_array.length; i++){
+   console.log(status_array[i]);
+ }
