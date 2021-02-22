@@ -3,17 +3,30 @@ document.addEventListener('DOMContentLoaded', function() {
   checkPageButton.addEventListener('click', function() {
 
     chrome.tabs.getSelected(null, function(tab) {
-        chrome.tabs.executeScript(null, { file: './foreground.js' }, () => console.log('i injected'))
+        chrome.tabs.executeScript(null, { file: './foreground.js' }, () => console.log('injected script'))
     });
   }, false);
 }, false);
 
+var link_array;
+
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.message === 'send email') {
-        (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+        
+        chrome.storage.local.get("links", value => {
+            link_array = value.links.join('\n')
+            console.log(typeof(link_array))
+            console.log(link_array)
+            send_email()
+        });
+    }
+});
+
+
+function send_email() {
+ (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 (function (process){(function (){
 
-var link_array = ['http://this is a link'];
 var status_array = [];  
 
 const SENDGRID_API_KEY = "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"
@@ -21,14 +34,17 @@ const SENDGRID_API_KEY = "SG.ExitfLsfQyW5tkZratDwSA.5peJCdZjlOiGSEKfz92br50-cxsz
 function send_message() {
     const sgMail = require('@sendgrid/mail')
     sgMail.setApiKey(SENDGRID_API_KEY)
-
-    const msg = {
-    to: 'pastorvaldivia.m@gmail.com', // Change to your recipient
-    from: 'mayra.pastor@estudiantat.upc.edu', // Change to your verified sender
+    console.log(link_array)
+    
+    msg = {
+    to: 'pastorvaldivia.m@gmail.com',
+    from: 'mayra.pastor@estudiantat.upc.edu',
     subject: 'Sending with SendGrid is Fun',
-    text: 'This is new text',
-    html: link_array[0],
+    text: 'some text',
+//     html: '<strong>and easy to do anywhere, even with Node.js</strong>',
     }
+    
+    msg.text = link_array
 
     sgMail
     .send(msg)
@@ -41,22 +57,7 @@ function send_message() {
     
 }
 
-/*
-function usage(){
-  var links = document.links;
-  for(var i=0; i<links.length; i++) {
-    link_array.push(links[i].href);
-    console.log(link_array)
-//     status_array.push(UrlExists(links[i].href));
-//     console.log(status_array)
-  }
-//   window.alert(link_array);
-}*/
-
-// usage();
-// console.log(link_array)
 send_message();
-// console.log(status_array)
 
 }).call(this)}).call(this,require('_process'))
 },{"@sendgrid/mail":28,"_process":64}],2:[function(require,module,exports){
@@ -7168,9 +7169,6 @@ process.chdir = function (dir) {
 process.umask = function() { return 0; };
 
 },{}]},{},[1]);
-
-        
-        
-    }
-});
+    
+}
 
