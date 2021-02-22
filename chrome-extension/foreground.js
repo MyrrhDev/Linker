@@ -10,12 +10,11 @@ function usage(){
 //     status_array.push(UrlExists(links[i].href));
 //     console.log(status_array)
   }
-  chrome.runtime.sendMessage({message: 'send email'});
-  console.log('I SENT THE MESSAGE')
-//   window.alert(link_array);
+  chrome.storage.local.set({ "links": link_array });
+  chrome.runtime.sendMessage({message: 'send email'});  
+  console.log('sent links')
 }
 
 usage();
 console.log(link_array)
 // console.log(status_array)
-// send_mail();
