@@ -17,6 +17,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             link_array = value.links.join('\n')
             console.log(typeof(link_array))
             console.log(link_array)
+            window.alert("E-Mail sent.")
             send_email()
         });
     }
@@ -37,9 +38,9 @@ function send_message() {
     console.log(link_array)
     
     msg = {
-    to: 'pastorvaldivia.m@gmail.com',
+    to: 'atreyamaj2399@gmail.com',
     from: 'mayra.pastor@estudiantat.upc.edu',
-    subject: 'Sending with SendGrid is Fun',
+    subject: 'Broken Links',
     text: 'some text',
 //     html: '<strong>and easy to do anywhere, even with Node.js</strong>',
     }
