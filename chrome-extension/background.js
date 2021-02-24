@@ -17,7 +17,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             link_array = value.links.join('\n')
             console.log(typeof(link_array))
             console.log(link_array)
-            window.alert("E-Mail sent.")
             send_email()
         });
     }
