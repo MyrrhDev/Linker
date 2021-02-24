@@ -1,7 +1,7 @@
 
 var link_array = [];
 var status_array = [];  
-z
+
 function usage(){
   var links = document.links;
   for(var i=0; i<links.length; i++) {
