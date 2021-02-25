@@ -14,7 +14,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.message === 'send email') {
         
         chrome.storage.local.get("links", value => {
-            link_array = value.links.join('\n')
+            link_array = value.links
             console.log(typeof(link_array))
             console.log(link_array)
             send_email()
@@ -29,22 +29,26 @@ function send_email() {
 
 var status_array = [];  
 
-const SENDGRID_API_KEY = "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"
+const SENDGRID_API_KEY='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'
+const TEMPLATE_ID='d-40e16f7cb5b145bdb17c7e651fc6cd4b'
+
 
 function send_message() {
     const sgMail = require('@sendgrid/mail')
     sgMail.setApiKey(SENDGRID_API_KEY)
     console.log(link_array)
     
-    msg = {
-    to: 'atreyamaj2399@gmail.com',
-    from: 'mayra.pastor@estudiantat.upc.edu',
-    subject: 'Broken Links',
-    text: 'some text',
-//     html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+    const msg = {
+      to: 'amalaabraham3@gmail.com',
+      from: 'amalaabraham3@gmail.com',
+      templateId: TEMPLATE_ID,
+      dynamicTemplateData : {
+        'row': link_array,
+      },
+      
     }
     
-    msg.text = link_array
+   
 
     sgMail
     .send(msg)

@@ -6,7 +6,9 @@ function validateURL(url) {
   var http = new XMLHttpRequest();
   http.open('HEAD', url, false);
   http.send();
-  return http.status;
+  if (http.status == 404)
+    link_array.push(url)
+  return http;
 }
 
 function usage(){
@@ -30,6 +32,7 @@ function usage(){
   }
   console.log(link_array)
   chrome.runtime.sendMessage({message: 'send email'});
+  chrome.storage.local.set({ "links": link_array });
   console.log('I SENT THE MESSAGE')
 //   window.alert(link_array);
 }
