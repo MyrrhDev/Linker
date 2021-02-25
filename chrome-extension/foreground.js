@@ -12,7 +12,7 @@ function validateURL(url) {
 function usage(){
   var links = document.links;
   for(var i=0; i<links.length; i++) {
-    link_array.push(links[i].href);
+    //link_array.push(links[i].href);
 
     try{
       validateURL(links[i].href)
