@@ -1,0 +1,4 @@
+export default {
+    SENDGRID_API_KEY:'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',
+    TEMPLATE_ID:'d-40e16f7cb5b145bdb17c7e651fc6cd4b'
+}
