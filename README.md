@@ -3,10 +3,10 @@
 
 Welcome to Linker! 
 
-We are a team of 3 devs:
-@MyrrhDev
-@amalaabraham
-@atreyamaj
+We are a team of 3 devs:  
+@MyrrhDev  
+@amalaabraham  
+@atreyamaj  
 
 Linker is an open-source chrome extension designed to grab all broken links (including 404s) on the page you're running the extension on, and either E-mail them to you or show them as a chrome alert. When you click on the extension, you get the option to get either of the aforementioned methods.
 
