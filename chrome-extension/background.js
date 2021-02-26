@@ -1,24 +1,46 @@
+
+var link_array;
+var email;
+var type;
+
 document.addEventListener('DOMContentLoaded', function() {
-  var checkPageButton = document.querySelector('button');
+  var checkPageButton = document.getElementById('emailbutton');
+  var showButton = document.getElementById('show');
+  
   checkPageButton.addEventListener('click', function() {
+    email = document.getElementById("to").value;
+    console.log(email)
+    type = ""
 
     chrome.tabs.getSelected(null, function(tab) {
         chrome.tabs.executeScript(null, { file: './foreground.js' }, () => console.log('injected script'))
     });
   }, false);
+  
+  showButton.addEventListener('click', function() {
+    chrome.tabs.getSelected(null, function(tab) {
+        type = "window"
+        chrome.tabs.executeScript(null, { file: './foreground.js' }, () => console.log('injected script'))
+    });
+  }, false);
+  
 }, false);
 
-var link_array;
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.message === 'send email') {
-        
         chrome.storage.local.get("links", value => {
-            link_array = value.links.join('\n')
+            link_array = value.links
             console.log(typeof(link_array))
             console.log(link_array)
-            send_email()
-        });
+            console.log(type)
+            if(type == "window") {
+                link_array = value.links.join('\n')
+                window.alert("Here are the broken links:\n"+ link_array);            
+            } else {
+                send_email()               
+            }
+        });    
     }
 });
 
@@ -29,22 +51,26 @@ function send_email() {
 
 var status_array = [];  
 
-const SENDGRID_API_KEY = "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"
+const SENDGRID_API_KEY='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'
+const TEMPLATE_ID='d-40e16f7cb5b145bdb17c7e651fc6cd4b'
+
 
 function send_message() {
     const sgMail = require('@sendgrid/mail')
     sgMail.setApiKey(SENDGRID_API_KEY)
     console.log(link_array)
     
-    msg = {
-    to: 'pastorvaldivia.m@gmail.com',
-    from: 'mayra.pastor@estudiantat.upc.edu',
-    subject: 'Sending with SendGrid is Fun',
-    text: 'some text',
-//     html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+    const msg = {
+      to: email,
+      from: 'amalaabraham3@gmail.com',
+      templateId: TEMPLATE_ID,
+      dynamicTemplateData : {
+        'row': link_array,
+      },
+      
     }
     
-    msg.text = link_array
+   
 
     sgMail
     .send(msg)

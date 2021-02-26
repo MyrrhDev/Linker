@@ -1,13 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<!-- <meta charset="utf-8"> -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="lib/bulma.min.css" rel="stylesheet">
+<link href="popup.css" rel="stylesheet">
 <title>Get Current URL in JavaScript</title>
 </head>
 <body bg-color="black">
-    <script src="popup.js"></script>
-    <button type="button">
-      Get Page URL 
-    </button>
+    <script src="background.js"></script>
+    <div class="content is-small">
+        <h1>Welcome to Broken Link Checker</h1>
+        <h3>Email:</h3>
+        <p>You can choose to send an email with the broken links</p>        
+        <div class="field">
+            <div class="control">
+            <input class="input is-link" type="text" id="to" placeholder="Send To: (split recipient emails with comma)">
+            </div>
+        </div>
+        <button class="button is-link" id="emailbutton" type="button">
+        Send broken links
+        </button>
+        <h3>Window popup:</h3>
+        <p>Or, you can see show them on the screen: </p>        
+        <button class="button is-link" id="show" type="button">
+        Show
+        </button>
+    </div>
 </body>
 </html>
