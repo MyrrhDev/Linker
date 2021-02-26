@@ -12,7 +12,7 @@ Linker is an open-source chrome extension designed to grab all broken links (inc
 
 Our target audience is primarily web-developers. This extension is a developer tool that users can use to quickly perform final link checks instead of checking every single link individually.
 
-## Using then Linker chrome extension
+## Using the Linker chrome extension
 -> Click on the extension icon  
   
 -> If you want the broken links in your E-mail, enter your e-mail and click on the first button. Else, click on the second button.   
