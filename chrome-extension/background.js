@@ -1,24 +1,46 @@
+
+var link_array;
+var email;
+var type;
+
 document.addEventListener('DOMContentLoaded', function() {
-  var checkPageButton = document.querySelector('button');
+  var checkPageButton = document.getElementById('emailbutton');
+  var showButton = document.getElementById('show');
+  
   checkPageButton.addEventListener('click', function() {
+    email = document.getElementById("to").value;
+    console.log(email)
+    type = ""
 
     chrome.tabs.getSelected(null, function(tab) {
         chrome.tabs.executeScript(null, { file: './foreground.js' }, () => console.log('injected script'))
     });
   }, false);
+  
+  showButton.addEventListener('click', function() {
+    chrome.tabs.getSelected(null, function(tab) {
+        type = "window"
+        chrome.tabs.executeScript(null, { file: './foreground.js' }, () => console.log('injected script'))
+    });
+  }, false);
+  
 }, false);
 
-var link_array;
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.message === 'send email') {
-        
         chrome.storage.local.get("links", value => {
             link_array = value.links
             console.log(typeof(link_array))
             console.log(link_array)
-            send_email()
-        });
+            console.log(type)
+            if(type == "window") {
+                link_array = value.links.join('\n')
+                window.alert("Here are the broken links:\n"+ link_array);            
+            } else {
+                send_email()               
+            }
+        });    
     }
 });
 
@@ -39,7 +61,7 @@ function send_message() {
     console.log(link_array)
     
     const msg = {
-      to: 'amalaabraham3@gmail.com',
+      to: email,
       from: 'amalaabraham3@gmail.com',
       templateId: TEMPLATE_ID,
       dynamicTemplateData : {
