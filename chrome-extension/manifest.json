@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
-  
-    "name": "Link Checker",
+
+    "name": "Broken Link Checker",
     "description": "Check broken links of the website you're in",
     "version": "1.0",
   
