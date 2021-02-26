@@ -4,12 +4,20 @@
 <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
 <link href="lib/bulma.min.css" rel="stylesheet">
 <link href="popup.css" rel="stylesheet">
+<link href="lib/loader.css" rel="stylesheet">
 <title>Get Current URL in JavaScript</title>
 </head>
 <body bg-color="black">
     <script src="background.js"></script>
     <div class="content is-small">
         <h1>Welcome to Broken Link Checker</h1>
+        <div  id="loader" style="display:none">
+          <h3>Checking for the broken links...</h3>
+          <div class="progress">
+              <div class="indeterminate"></div>
+          </div>
+        </div>
+        <div id="content">
         <h3>Email:</h3>
         <p>You can choose to send an email with the broken links</p>        
         <div class="field">
@@ -25,6 +33,7 @@
         <button class="button is-link" id="show" type="button">
         Show
         </button>
+    </div>
     </div>
 </body>
 </html>

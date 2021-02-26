@@ -1,11 +1,14 @@
-
 var link_array;
 var email;
 var type;
+var loader;
+var body;
 
 document.addEventListener('DOMContentLoaded', function() {
   var checkPageButton = document.getElementById('emailbutton');
   var showButton = document.getElementById('show');
+  loader = document.getElementById("loader");
+  body = document.getElementById("content");
   
   checkPageButton.addEventListener('click', function() {
     email = document.getElementById("to").value;
@@ -13,11 +16,15 @@ document.addEventListener('DOMContentLoaded', function() {
     type = ""
 
     chrome.tabs.getSelected(null, function(tab) {
+      body.style.display = "none";
+        loader.style.display = "block";
         chrome.tabs.executeScript(null, { file: './foreground.js' }, () => console.log('injected script'))
     });
   }, false);
   
   showButton.addEventListener('click', function() {
+    body.style.display = "none";
+    loader.style.display = "block";
     chrome.tabs.getSelected(null, function(tab) {
         type = "window"
         chrome.tabs.executeScript(null, { file: './foreground.js' }, () => console.log('injected script'))
@@ -29,6 +36,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.message === 'send email') {
+      body.style.display = "block";
+        loader.style.display = "none";
         chrome.storage.local.get("links", value => {
             link_array = value.links
             console.log(typeof(link_array))
@@ -38,7 +47,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                 link_array = value.links.join('\n')
                 window.alert("Here are the broken links:\n"+ link_array);            
             } else {
-                send_email()               
+                send_email()
+                window.alert("Mail sent");                 
             }
         });    
     }
