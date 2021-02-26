@@ -1,0 +1,7 @@
+Scrapy==2.4.1
+BareNecessities==0.2.8
+Mail==2.1.0
+python-env==1.0.0
+python-http-client==3.3.2
+sendgrid==6.6.0
+starkbank-ecdsa==1.1.0
