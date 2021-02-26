@@ -1,5 +1,5 @@
 # Linker
-## Your open-source one-stop solution to finding Broken Links on deployed Pages!
+## Your open-source one-stop solution to find Broken Links on deployed Pages!
 
 Welcome to Linker! 
 
@@ -8,7 +8,7 @@ We are a team of 3 devs:
 @amalaabraham  
 @atreyamaj  
 
-Linker is an open-source chrome extension designed to grab all broken links (including 404s) on the page you're running the extension on, and either E-mail them to you or show them as a chrome alert. When you click on the extension, you get the option to get either of the aforementioned methods.
+Linker is an open-source chrome extension designed to grab all broken links on the page you're running the extension on, and either E-mail them to you or show them as a chrome alert. When you click on the extension, you get the option to get either of the aforementioned methods.
 
 Our target audience is primarily web-developers. This extension is a developer tool that users can use to quickly perform final link checks instead of checking every single link individually.
 
@@ -22,3 +22,4 @@ Our target audience is primarily web-developers. This extension is a developer t
 ## Want to report any bugs or open an issue, or have an idea that you want to contribute?
 
 Reach out to us at `https://github.com/MyrrhDev/Sprint0`
+Feel free to open any issues or send PRs!
