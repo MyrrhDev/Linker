@@ -56,6 +56,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.message === 'send email') {
+      if (!valid) {
+        window.alert("One or more emails are incorrect.");
+        body.style.display = "block";
+        loader.style.display = "none";
+        return;
+      }
       body.style.display = "block";
         loader.style.display = "none";
         chrome.storage.local.get("links", value => {
