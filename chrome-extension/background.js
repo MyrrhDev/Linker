@@ -3,6 +3,12 @@ var email;
 var type;
 var loader;
 var body;
+var valid = true;
+
+const validateEmailAddress = (email) => {
+  const pattern = /^(([^<>()\\[\]\\.,;:\s@"]+(\.[^<>()\\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return pattern.test(email);
+};
 
 document.addEventListener('DOMContentLoaded', function() {
   var checkPageButton = document.getElementById('emailbutton');
@@ -12,7 +18,21 @@ document.addEventListener('DOMContentLoaded', function() {
   
   checkPageButton.addEventListener('click', function() {
     email = document.getElementById("to").value;
-    console.log(email)
+    var emailList = email.replace(/\s/g, "").split(",");
+
+    let i;
+    for (i = 0; i < emailList.length; i++) {
+      const val = emailList[i];
+      if (!validateEmailAddress(val)) {
+        valid = false;
+        break;
+      }      
+    }
+
+    if (i == emails.length) {
+      valid = true;
+    }
+
     type = ""
 
     chrome.tabs.getSelected(null, function(tab) {
@@ -36,6 +56,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.message === 'send email') {
+      if (!valid) {
+        window.alert("One or more emails are incorrect.");
+        body.style.display = "block";
+        loader.style.display = "none";
+        return;
+      }
       body.style.display = "block";
         loader.style.display = "none";
         chrome.storage.local.get("links", value => {
