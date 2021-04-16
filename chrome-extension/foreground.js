@@ -6,8 +6,19 @@ function validateURL(url) {
   var http = new XMLHttpRequest();
   http.open('HEAD', url, false);
   http.send();
-  if (http.status == 404)
+
+  // Get the first character of the status
+  let statusType = http.status.toString()[0];
+
+  // StatusCode 2XX = Success
+  // StatusCode 3xx = Redirect
+  // StatusCode 4xx = Client Error
+  // StatusCode 5xx = Server Error
+  if (statusType == 3 || statusType == 4 || statusType == 5) {
+    // While redirects are not necessarily errors, they should be fixed as they might stop working in the future
     link_array.push(url)
+  }
+    
   return http;
 }
 
