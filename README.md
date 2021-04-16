@@ -17,7 +17,17 @@ Our target audience is primarily web-developers. This extension is a developer t
   
 -> If you want the broken links in your E-mail, enter your e-mail and click on the first button. Else, click on the second button.   
   
--> Wait for 30s to 1 minute for all the links to be parsed and checked.  
+-> Wait for 30s to 1 minute for all the links to be parsed and checked. 
+
+## How to run the extension locally?
+
+1. Open the Extension Management page by navigating to `chrome://extensions`.
+    - Alternatively, open this page by clicking on the Chrome menu, hovering over More Tools then selecting Extensions
+2. Enable Developer Mode by clicking the toggle switch next to Developer mode.
+3. Click the LOAD UNPACKED button and select the extension directory.
+
+Ta-da! The extension has been successfully installed.
+
 
 ## Want to report any bugs or open an issue, or have an idea that you want to contribute?
 
